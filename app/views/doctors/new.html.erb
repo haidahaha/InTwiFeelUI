@@ -1,0 +1,37 @@
+<h1>New doctor</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for @doctor, :html => {:multipart => true} do |f| %>
+      <% if @doctor.errors.any? %>
+        <div id="error_explanation">
+          <%= pluralize(@doctor.errors.count, "error") %>:
+
+          <ul>
+          <% @doctor.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation %>
+
+        <%= f.submit "Create new doctor", class: "btn btn-primary" %>
+
+    <% end %>
+
+    </div>
+</div>
+
+<%= link_to 'Back', doctors_path %>

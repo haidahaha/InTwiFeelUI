@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  length: 
+  transcribed: false
+  report_id: 
+  note: MyText
+
+two:
+  type: 
+  length: 
+  transcribed: false
+  report_id: 
+  note: MyText

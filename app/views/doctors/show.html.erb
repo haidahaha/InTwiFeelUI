@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="col-lg-6 col-lg-offset-3 top-buffer">
+
+        <!-- ===== vCard Navigation ===== -->
+        <div class="row w">
+            <div class="col-md-4 top-buffer" id="avatar">
+                <% if @doctor.photo %>
+                    <%= image_tag @doctor.photo_url.to_s, class: "img-responsive" %>
+                <% end %>
+                <!-- <img class="img-responsive" src="http://lorempixel.com/140/140/" alt=""> -->
+
+            </div><!-- col-md-4 -->
+
+        <!-- ===== vCard Content ===== -->
+            <div class="col-md-8">
+                <div class="tab-content">
+
+                  <!-- ===== First Tab ===== -->
+                  <div class="tab-pane active" id="about">
+                    <h3>Private Practice Dr. <%= @doctor.name %></h3>
+                    <hr>
+                    <h1>Welcome back!</h1>
+                  </div><!-- tab about -->
+
+
+                </div><!-- Tab Content -->
+            </div><!-- col-md-8 -->
+        </div><!-- row w -->
+    </div><!-- col-lg-6 -->
+</div><!-- /.container -->

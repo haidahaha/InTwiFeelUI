@@ -1,0 +1,160 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+/* mixins, variables, etc. */
+
+$gray-medium-light: #eaeaea;
+
+/* universal */
+
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
+body {
+  padding-top: 60px;
+  background-color: #87cbde;
+  color: #555;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+  h1 {
+    margin-bottom: 10px;
+  }
+}
+
+/* typography */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+
+/* header */
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+/* footer */
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid $gray-medium-light;
+  /*color: $gray-light;*/
+  a {
+    /*color: $gray;*/
+    &:hover {
+      /*color: $gray-darker;*/
+    }
+  }
+  small {
+    float: left;
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 15px;
+    }
+  }
+}
+
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+
+input {
+  height: auto !important;
+}
+
+.holder {
+   width:640px;
+   height:360;
+   margin: 0 auto;
+   margin-bottom:14em;
+}
+
+.top-buffer { margin-top:20px; }
+
+#myAudio {
+  width: 100%;
+}
+
+span.glyphicon {
+    font-size: 1.2em;
+}
+
+.w {
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  -moz-box-shadow: 5px 5px rgba(0,0,0,0.2);
+  -webkit-box-shadow: 5px 5px rgba(0,0,0,0.2);
+  box-shadow: 5px 5px rgba(0,0,0,0.2);
+}
+
+.box {
+  border: solid 1px #CCCCCC;
+  background-color: #f9f9f9;
+  padding: 20px
+}
+
+.white-background {
+  background-color: #ffffff;
+}
+
+.secret > a {
+  color: #222 !important;
+}
+
+.secret > a:hover,
+.secret > a:focus {
+    color: red !important;
+}
