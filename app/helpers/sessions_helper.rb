@@ -1,6 +1,6 @@
 module SessionsHelper
-    def log_in(doctor)
-        session[:doctor_id] = doctor.id
+    def log_in(user_id)
+        session[:user_id] = user_id
     end
 
     def current_doctor
@@ -12,7 +12,7 @@ module SessionsHelper
     end
 
     def log_out
-        session.delete(:doctor_id)
+        session.delete(:user_id)
         @current_doctor = nil
     end
 end

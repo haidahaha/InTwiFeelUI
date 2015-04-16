@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
 
+  get 'show' => 'users#show'
+  post 'show' => 'users#show'
+  get 'login' => 'sessions#new'
+  get 'signup' => 'users#new'
+  post 'signup' => 'users#create'
+
   root 'sessions#new'
   get 'about' => 'static_pages#about'
-  get 'signup' => 'doctors#new'
-  get 'login' => 'sessions#new'
+
+
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
   get 'reports' => 'reports#index'
@@ -17,7 +23,6 @@ Rails.application.routes.draw do
   get 'records/:id/note' => 'records#note', as: :record_note
   patch 'records/:id/create_note' => 'records#create_note', as: :create_note
 
-  get 'reset' => 'application#reset'
 
   resources :doctors
 end
