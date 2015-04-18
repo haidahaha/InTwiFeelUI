@@ -7,7 +7,7 @@
                 <img class="img-responsive" src="http://lorempixel.com/140/140/" alt="">
             </div><!-- col-md-4 -->
 
-        <!-- ===== vCard Content ===== -->
+            <!-- ===== vCard Content ===== -->
             <div class="col-md-8">
                 <div class="tab-content">
 
@@ -23,13 +23,51 @@
             </div><!-- col-md-8 -->
         </div><!-- row w -->
 
-        <div class="row w top-buffer box text-center">
-            <form role="search">
-                <div class="form-group">
-                    <input class="form-control" type="text" placeholder="#query" />
+        <div class="row w top-buffer box">
+            <div class="col-md-12">
+                <h3 class="text-center">
+                    Products
+                </h3>
+
+                <div class="row">
+                    <%= form_for :product, url: create_path do |f| %>
+                        <div class="input-group">
+                          <%= f.text_field :name, class: 'form-control', placeholder: "New product" %>
+                          <span class="input-group-btn">
+                            <%= f.submit "Add", class: "btn btn-primary" %>
+                          </span>
+                        </div>
+                    <% end %>
                 </div>
-                <button type="submit" class="btn btn-success">Search</button>
-            </form>
+
+                <% if @products.empty? %>
+                    <h2>
+                       You don't have any products yet.<br>
+                       Why don't you go ahead and add a few ones?
+                   </h2>
+                <% else %>
+                    <div class="row top-buffer">
+                        <table class="table table-hover">
+                          <thead>
+                            <tr>
+                              <th>Products</th>
+                              <th>Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% @products.each do |product| %>
+                              <tr>
+                                <td><%= product %></td>
+                                <td><%= link_to delete_path(name: product), method: :delete do %> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> <% end %></td>
+                              </tr>
+                            <% end %>
+                          </tbody>
+                        </table>
+                    </div>
+
+                <% end %>
+
+            </div>
         </div>
     </div><!-- col-lg-6 -->
 </div><!-- /.container -->

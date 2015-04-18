@@ -1,18 +1,17 @@
 module SessionsHelper
-    def log_in(user_id)
+    def log_in(user_id, username, password)
         session[:user_id] = user_id
-    end
-
-    def current_doctor
-        @current_doctor ||= Doctor.find_by(id: session[:doctor_id])
+        session[:username] = username
+        session[:password] = password
     end
 
     def logged_in?
-        !current_doctor.nil?
+        !session[:user_id].nil?
     end
 
     def log_out
         session.delete(:user_id)
-        @current_doctor = nil
+        session.delete(:username)
+        session.delete(:password)
     end
 end

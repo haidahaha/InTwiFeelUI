@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def show
-    @username = params[:username]
+    @username = session[:username]
+    @products = get_products
   end
 
   def new
@@ -25,6 +26,27 @@ class UsersController < ApplicationController
       redirect_to login_path, notice: "User #{content["username"]} has been successfully created. Let sign in now."
     else
       render 'new'
+    end
+  end
+
+  private
+
+  def get_products
+    client = HTTPClient.new
+    auth = Base64.strict_encode64("#{session[:username]}:#{session[:password]}")
+    rq = client.get(
+      "http://127.0.0.1:8080/product/list",
+      {},
+      {'Authorization' => "Basic #{auth}"}
+    )
+
+    p rq
+
+    if HTTP::Status.successful? rq.status
+      content = JSON.parse(rq.content)
+      return content.map {|x| x["name"]}
+    else
+      return []
     end
   end
 end

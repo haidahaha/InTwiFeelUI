@@ -32,18 +32,8 @@
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
           <!-- <li><a href="#about">About</a></li> -->
-          <li><%= link_to "Profile", current_doctor %></li>
+          <li><%= link_to "Profile", show_path %></li>
           <% if logged_in? %>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                Reports <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li><%= link_to "Finished", reports_path(status: "finished") %></li>
-                <li><%= link_to "Not Finished", reports_path(status: "unfinished") %></li>
-              </ul>
-            </li>
-            <li><%= link_to "Settings", edit_doctor_path(current_doctor) %></li>
             <li><%= link_to "Log out", logout_path, method: "delete" %></li>
           <% else %>
             <li><%= link_to "Log in", login_path %></li>

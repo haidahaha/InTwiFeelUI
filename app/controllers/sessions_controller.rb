@@ -13,8 +13,8 @@ class SessionsController < ApplicationController
 
     if HTTP::Status.successful? rq.status
       content = JSON.parse(rq.content)
-      log_in content["id"]
-      redirect_to show_path(username: content["username"])
+      log_in content["id"], content["username"], params[:session][:password]
+      redirect_to show_path
     else
       render 'new'
     end
