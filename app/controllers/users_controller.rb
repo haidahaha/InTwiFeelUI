@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def create
     client = HTTPClient.new
     rq = client.post(
-      "http://127.0.0.1:8080/user/create",
+      "#{REST_SERVER_URI}/user/create",
       {
         username: params[:user][:username],
         password: params[:user][:password]
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     client = HTTPClient.new
     auth = Base64.strict_encode64("#{session[:username]}:#{session[:password]}")
     rq = client.get(
-      "http://127.0.0.1:8080/product/list",
+      "#{REST_SERVER_URI}/product/list",
       {},
       {'Authorization' => "Basic #{auth}"}
     )

@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
     client = HTTPClient.new
     auth = Base64.strict_encode64("#{session[:username]}:#{session[:password]}")
     rq = client.post(
-      "http://127.0.0.1:8080/product/add",
+      "#{REST_SERVER_URI}/product/add",
       {
         name: params[:product][:name]
       }.to_json,
@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
     client = HTTPClient.new
     auth = Base64.strict_encode64("#{session[:username]}:#{session[:password]}")
     rq = client.delete(
-      "http://127.0.0.1:8080/product/remove/#{params[:name]}",
+      "#{REST_SERVER_URI}/product/remove/#{params[:name]}",
       {},
       {'Authorization' => "Basic #{auth}"}
     )

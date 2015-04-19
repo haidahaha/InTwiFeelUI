@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     client = HTTPClient.new
     auth = Base64.strict_encode64("#{params[:session][:username]}:#{params[:session][:password]}")
     rq = client.get(
-      "http://127.0.0.1:8080/user/find/#{params[:session][:username]}",
+      "#{REST_SERVER_URI}/user/find/#{params[:session][:username]}",
       {},
       {'Authorization' => "Basic #{auth}"}
     )
