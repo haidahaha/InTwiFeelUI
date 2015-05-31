@@ -149,11 +149,14 @@ span.glyphicon {
   background-color: #ffffff;
 }
 
-.secret > a {
-  color: #222 !important;
+.emoji {
+    width: 1.5em;
+    height: 1.5em;
+    display: inline-block;
+    margin-bottom: -0.25em;
 }
 
-.secret > a:hover,
-.secret > a:focus {
-    color: red !important;
+.emoticon1, .emoticon2, .emoticon3, .emoticon4 {
+  background-image: asset-data-url("emoji/smile.png");
 }
+

@@ -58,7 +58,12 @@
                             <% @products.each do |product| %>
                               <tr>
                                 <td><%= product %></td>
-                                <td><%= link_to delete_path(name: product), method: :delete do %> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> <% end %></td>
+                                <td>
+                                <%= link_to live_path(name: product) do %> <span class="glyphicon glyphicon-play" aria-hidden="true"></span>&nbsp;&nbsp;<% end %>
+                                <%= link_to history_path(name: product) do %> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>&nbsp;&nbsp; <% end %>
+                                <%= link_to delete_path(name: product), method: :delete do %> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> <% end %>
+
+                                </td>
                               </tr>
                             <% end %>
                           </tbody>

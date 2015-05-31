@@ -1,0 +1,20 @@
+<div id="visualization"></div>
+
+<script type="text/javascript">
+
+  var container = document.getElementById('visualization');
+  var items = gon.items;
+
+  var dataset = new vis.DataSet(items);
+  var options = {
+    start: '2014-06-10',
+    end: '2014-06-18'
+  };
+  var graph2d = new vis.Graph2d(container, dataset, options);
+  emojify.setConfig({
+      img_dir          : '/assets/emoji',  // Directory for emoji images
+      emojify_tag_type : 'text'
+  });
+  emojify.run();
+  graph2d.fit();
+</script>

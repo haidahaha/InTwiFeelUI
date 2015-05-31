@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
   post 'create' => 'products#create'
   delete 'delete' => 'products#destroy'
+  get 'products/:name/live' => 'products#live', as: 'live'
+  get 'products/:name/history' => 'products#history', as: 'history'
+  # post 'products/:name/history/:from/:to' => 'products#history', as: 'history'
+  post 'add_data_point' => 'products#add_data_point'
 
   get 'show' => 'users#show'
   post 'show' => 'users#show'
@@ -15,4 +19,5 @@ Rails.application.routes.draw do
 
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
+
 end
