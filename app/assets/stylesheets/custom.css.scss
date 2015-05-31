@@ -157,7 +157,13 @@ span.glyphicon {
     position: absolute;
 }
 
-.emoticon1, .emoticon2, .emoticon3, .emoticon4 {
-  background-image: asset-data-url("emoji/smile.png");
+.custom-style {
+    fill: #f2ea00;
+    fill-opacity:0;
+    stroke-width:2px;
+    stroke: #b3ab00;
 }
 
+.vis.timeline .fill {
+  fill-opacity: 0.5;
+}

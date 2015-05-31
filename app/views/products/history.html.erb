@@ -71,14 +71,19 @@
   var dataset = new vis.DataSet(items);
   var options = {
     dataAxis: {
-        customRange: {
-          left: {
-            min:0, max: 4
-          }
-        },
-        showMinorLabels: false
+      customRange: {
+        left: {
+          min:0, max: 4
+        }
       },
+      showMinorLabels: false
+    },
     zoomMin: 60000,
+    shaded: {
+      enabled: true,
+      orientation: 'bottom', // top, bottom
+      style: 'custom-style'
+    }
   };
   var graph2d = new vis.Graph2d(container, dataset, options);
   graph2d.fit();

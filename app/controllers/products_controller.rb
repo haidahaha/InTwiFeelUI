@@ -48,27 +48,8 @@ class ProductsController < ApplicationController
 
     if HTTP::Status.successful? rq.status
       content = JSON.parse(rq.content)
-      gon.items = content["scores"].map {|x| {x: DateTime.strptime("#{x["date"]}", "%Q").iso8601, y: x["score"], label: score2emoticon(x["score"].to_f)}}
-      emoticon1 = 0
-      emoticon2 = 0
-      emoticon3 = 0
-      emoticon4 = 0
-      content["scores"].each do |s|
-        score = s["score"].to_i
-        if score < 1
-          emoticon1 += 1
-        elsif score < 2
-          emoticon2 += 1
-        elsif score < 3
-          emoticon3 += 1
-        else
-          emoticon4 += 1
-        end
-      end
-      gon.emoticon1 = emoticon1
-      gon.emoticon2 = emoticon2
-      gon.emoticon3 = emoticon3
-      gon.emoticon4 = emoticon4
+      gon.items = content["scores"].map {|x| {x: DateTime.strptime("#{x["date"]}", "%Q").iso8601, y: x["score"]}}
+      gon.emoticon1, gon.emoticon2, gon.emoticon3, gon.emoticon4 = score2emoticon(content["scores"])
     else
       gon.items = []
     end
@@ -96,19 +77,23 @@ class ProductsController < ApplicationController
 
   private
 
-  def score2emoticon(score)
-    className =
+  def score2emoticon(scores)
+    emoticon1 = 0
+    emoticon2 = 0
+    emoticon3 = 0
+    emoticon4 = 0
+    scores.each do |s|
+      score = s["score"].to_i
       if score < 1
-        "emoticon1"
+        emoticon1 += 1
       elsif score < 2
-        "emoticon2"
+        emoticon2 += 1
       elsif score < 3
-        "emoticon3"
+        emoticon3 += 1
       else
-        "emoticon4"
+        emoticon4 += 1
       end
-    return {
-      className: className
-    }
+    end
+    return emoticon1, emoticon2, emoticon3, emoticon4
   end
 end
