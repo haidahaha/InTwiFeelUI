@@ -1,5 +1,3 @@
-== README
-
 This is the front-end for project **InTwiFeel**, as part of course work for Advanced Software Engineeing at University of Zurich
 
 # How to install
