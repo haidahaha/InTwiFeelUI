@@ -1,12 +1,15 @@
 <div id="visualization"></div>
+<br>
+<div>
+  Incoming tweet: <h1 id="tweet"></h1>
+</div>
 <script type="text/javascript">
 
-    var DELAY = 1000; // delay in ms to add new data points
+    var DELAY = 2000; // delay in ms to add new data points
 
     // create a graph2d with an (currently empty) dataset
     var container = document.getElementById('visualization');
     var dataset = new vis.DataSet();
-    var from = vis.moment().unix();
 
     var options = {
       start: vis.moment().add(-30, 'seconds'), // changed so its faster
@@ -48,15 +51,19 @@
       var now = vis.moment();
       $.post("/add_data_point",
       {
-        name: gon.productname,
-        from: from
+        name: gon.productname
       },
       function(data, status) {
         dataset.add({
             x: vis.moment(data["x"]),
-            y: data["y"]
+            y: data["y"],
+            label: {
+              content: data["label"],
+              yOffset: 20,
+              xOffset: -20
+            }
         });
-        from = data["from"];
+        $("#tweet").text(data["tweet"]);
       });
 
 

@@ -49,14 +49,33 @@ class ProductsController < ApplicationController
     if HTTP::Status.successful? rq.status
       content = JSON.parse(rq.content)
       gon.items = content["scores"].map {|x| {x: DateTime.strptime("#{x["date"]}", "%Q").iso8601, y: x["score"], label: score2emoticon(x["score"].to_f)}}
-      p gon.items
+      emoticon1 = 0
+      emoticon2 = 0
+      emoticon3 = 0
+      emoticon4 = 0
+      content["scores"].each do |s|
+        score = s["score"].to_i
+        if score < 1
+          emoticon1 += 1
+        elsif score < 2
+          emoticon2 += 1
+        elsif score < 3
+          emoticon3 += 1
+        else
+          emoticon4 += 1
+        end
+      end
+      gon.emoticon1 = emoticon1
+      gon.emoticon2 = emoticon2
+      gon.emoticon3 = emoticon3
+      gon.emoticon4 = emoticon4
     else
       gon.items = []
     end
 
   end
 
-  def add_data_point2
+  def add_data_point
     client = HTTPClient.new
     auth = Base64.strict_encode64("#{session[:username]}:#{session[:password]}")
     rq = client.get(
@@ -67,31 +86,7 @@ class ProductsController < ApplicationController
 
     if HTTP::Status.successful? rq.status
       content = JSON.parse(rq.content)
-      response = {x: Time.now, y: content["average"]}
-      p response
-      send_data(response.to_json, :status => 200, :type => "application/json")
-    else
-
-    end
-  end
-
-  def add_data_point
-    now = Time.now
-    url = "#{REST_SERVER_URI}/product/scores/#{params[:name]}/#{params[:from]}000/#{now.to_i}000"
-    p url
-    client = HTTPClient.new
-    auth = Base64.strict_encode64("#{session[:username]}:#{session[:password]}")
-    rq = client.get(
-      url,
-      {},
-      {'Authorization' => "Basic #{auth}"}
-    )
-
-    if HTTP::Status.successful? rq.status
-      content = JSON.parse(rq.content)
-      sum = 0.0
-      content.map{|x| sum += x["score"]}
-      response = {x: now, y: sum / content.size, from: now.to_i}
+      response = {x: Time.now, y: content["average"], label: content["average"].to_f.round(4), tweet: content["example"] || " "}
       p response
       send_data(response.to_json, :status => 200, :type => "application/json")
     else
@@ -113,7 +108,6 @@ class ProductsController < ApplicationController
         "emoticon4"
       end
     return {
-      content: "test",
       className: className
     }
   end
